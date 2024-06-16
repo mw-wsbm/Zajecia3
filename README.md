@@ -1,4 +1,5 @@
-# Zajecia3 zadanie 1
+# Zajecia3
+# zadanie 1
 import subprocess
 import json
 
@@ -61,3 +62,72 @@ if __name__ == "__main__":
 1. `https://jsonplaceholder.typicode.com/posts/1`
 2. `https://jsonplaceholder.typicode.com/comments/1`
 3. `https://jsonplaceholder.typicode.com/albums/1`
+
+
+
+#Zadanie 2
+
+#aplikacja
+
+def add(a, b):
+    return a + b
+
+def subtract(a, b):
+    return a - b
+
+def multiply(a, b):
+    return a * b
+
+def divide(a, b):
+    if b == 0:
+        raise ValueError("Cannot divide by zero")
+    return a / b
+
+#testy 
+import unittest
+from app.calculator import add, subtract, multiply, divide
+
+class TestCalculator(unittest.TestCase):
+
+    def test_add(self):
+        self.assertEqual(add(1, 2), 3)
+        self.assertEqual(add(-1, 1), 0)
+        self.assertEqual(add(-1, -1), -2)
+
+    def test_subtract(self):
+        self.assertEqual(subtract(2, 1), 1)
+        self.assertEqual(subtract(-1, 1), -2)
+        self.assertEqual(subtract(-1, -1), 0)
+
+    def test_multiply(self):
+        self.assertEqual(multiply(2, 3), 6)
+        self.assertEqual(multiply(-1, 1), -1)
+        self.assertEqual(multiply(-1, -1), 1)
+
+    def test_divide(self):
+        self.assertEqual(divide(6, 3), 2)
+        self.assertEqual(divide(-1, 1), -1)
+        self.assertEqual(divide(-1, -1), 1)
+        with self.assertRaises(ValueError):
+            divide(1, 0)
+
+if __name__ == '__main__':
+    unittest.main()
+
+# plik Makefile
+
+.PHONY: install test run
+
+install:
+    pip install -r requirements.txt
+
+test:
+    python -m unittest discover -s tests
+
+run:
+    python -c "from app.calculator import add, subtract, multiply, divide; print('Add: ', add(1, 2)); print('Subtract: ', subtract(5, 3)); print('Multiply: ', multiply(4, 2)); print('Divide: ', divide(8, 2))"
+
+# testowanie
+
+w celu przetestowania Makefile trzeba użyc reguł make install make test i make run
+
