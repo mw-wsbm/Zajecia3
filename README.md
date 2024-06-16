@@ -65,9 +65,9 @@ if __name__ == "__main__":
 
 
 
-#Zadanie 2
+# Zadanie 2
 
-#aplikacja
+# aplikacja
 
 def add(a, b):
     return a + b
@@ -83,7 +83,7 @@ def divide(a, b):
         raise ValueError("Cannot divide by zero")
     return a / b
 
-#testy 
+# testy 
 import unittest
 from app.calculator import add, subtract, multiply, divide
 
